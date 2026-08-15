@@ -34,10 +34,10 @@ export default function HomePage() {
       return;
     }
 
-    const total = sgpa.reduce(
-      (sum, value) => sum + Number(value),
-      0
-    );
+    const total = sgpa.reduce<number>((sum, value) => {
+      if (value === "") return sum;
+      return sum + value;
+    }, 0);
 
     const result = total / semester;
 
